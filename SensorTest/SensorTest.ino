@@ -1,6 +1,9 @@
 // Sensor pins
-const int sensorPower = 7;
-const int sensorPin = A0;
+// const int sensorPower = 7;
+// const String sensorPin = 'A0';
+
+#define sensorPower 7;
+#define sesnorPin A0;
 
 // Value for storing water level
 int val = 0;
@@ -12,7 +15,7 @@ void setup() {
 	// Set to LOW so no power flows through the sensor
 	digitalWrite(sensorPower, LOW);
 	
-	Serial.begin(9600);
+	Serial.begin(38400); //9600
 }
 
 void loop() {
