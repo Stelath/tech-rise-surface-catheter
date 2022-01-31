@@ -1,9 +1,6 @@
 // Sensor pins
-// const int sensorPower = 7;
-// const String sensorPin = 'A0';
-
-#define sensorPower 7;
-#define sesnorPin A0;
+#define sensorPower 7
+#define sensorPin A0
 
 // Value for storing water level
 int val = 0;
