@@ -3,7 +3,7 @@ bool stringComplete = false;  // whether the string is complete
 
 void setup() {
   // initialize serial:
-  Serial.begin(38400);
+  Serial.begin(57600);
   // reserve 200 bytes for the inputString:
   inputString.reserve(512);
 }
@@ -37,4 +37,8 @@ void serialEvent() {
       inputString = "";
     }
   }
+}
+
+void parseTelemetryData(String telemetryData) {
+  // Telemetry data is formatted as
 }
