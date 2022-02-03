@@ -39,6 +39,12 @@ void serialEvent() {
   }
 }
 
-void parseTelemetryData(String telemetryData) {
+/**
+ * @brief 
+ * 
+ * @param telemetryData 
+ * @return String* 
+ */
+String* parseTelemetryData(String telemetryData) {
   // Telemetry data is formatted as
 }

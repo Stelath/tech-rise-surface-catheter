@@ -30,10 +30,9 @@ void setup()
 
 void loop()
 {
-    writeSensorData(sensorDataFile, millis(), 10, 30);
-    writeTelemetryData(telemetryDataFile, millis(), "Telemetry Test Value");
+    writeSensorData(millis(), 10, 30);
+    writeTelemetryData(millis(), "Telemetry Test Value");
     delay(10);
-    
 }
 
 /**
@@ -44,11 +43,8 @@ void loop()
  */
 bool setupSDCard()
 {
-
     if (SD.begin(4))
     {
-        sensorDataFile = SD.open("SENSORDATA.CSV", FILE_WRITE);
-        telemetryDataFile = SD.open("TELEMETRYDATA.CSV", FILE_WRITE);
         return true;
     }
     else
@@ -64,18 +60,19 @@ bool setupSDCard()
  * Stores sensor data from the experiement in a CSV file for later
  * review and analysis.
  * 
- * @param file The file to write the data to.
  * @param timestamp The time in milliseconds from rocket launch.
  * @param fluidLevel The level output of the fluid sensor.
  * @param volume The volume of fluid in the reservoir calculated
  *               with the fluid level (in milliliters).
  */
-void writeSensorData(File file, long timestamp, int fluidLevel, int volume)
+void writeSensorData(long timestamp, int fluidLevel, int volume)
 {
-    if (file) // Make sure the file opened properly
+    sensorDataFile = SD.open("SENSORDATA.CSV", FILE_WRITE);
+    if (sensorDataFile) // Make sure the file opened properly
     {
-        file.println(String(timestamp) + ", " + String(fluidLevel) + "," + String(volume));
+        sensorDataFile.println(String(timestamp) + "," + String(fluidLevel) + "," + String(volume));
     }
+    sensorDataFile.close();
 }
 
 /**
@@ -90,10 +87,12 @@ void writeSensorData(File file, long timestamp, int fluidLevel, int volume)
  * @param telemetry The Tech Rise rocket telemetry passed to the
  *                  Arduino through the serial bus.
  */
-void writeTelemetryData(File file, long timestamp, String telemetry)
+void writeTelemetryData(long timestamp, String telemetry)
 {
-    if (file) // Make sure the file opened properly
+    telemetryDataFile = SD.open("TELEMETRYDATA.CSV", FILE_WRITE);
+    if (telemetryDataFile) // Make sure the file opened properly
     {
-        file.println(String(timestamp) + ", " + telemetry);
+        telemetryDataFile.println(String(timestamp) + "," + telemetry);
     }
+    telemetryDataFile.close();
 }
