@@ -1,17 +1,5 @@
-/*
-    I would suggest taking a look at this link it seems to have both the read and write
-    capabilities you are looking for, remember you at least need to open up the file at some point
-    so you dont erase existing data.
-    https://create.arduino.cc/projecthub/electropeak/sd-card-module-with-arduino-how-to-read-write-data-37f390
-
-    need to create a function that will write to sd in a csv file with paramters (timestamp, fluid level, volume)
-*/
-
 #include <SPI.h>
 #include <SD.h>
-
-File sensorDataFile;
-File telemetryDataFile;
 
 void setup()
 {
@@ -67,7 +55,7 @@ bool setupSDCard()
  */
 void writeSensorData(long timestamp, int fluidLevel, int volume)
 {
-    sensorDataFile = SD.open("SENSORDATA.CSV", FILE_WRITE);
+    File sensorDataFile = SD.open("SENSORDATA.CSV", FILE_WRITE);
     if (sensorDataFile) // Make sure the file opened properly
     {
         sensorDataFile.println(String(timestamp) + "," + String(fluidLevel) + "," + String(volume));
@@ -89,7 +77,7 @@ void writeSensorData(long timestamp, int fluidLevel, int volume)
  */
 void writeTelemetryData(long timestamp, String telemetry)
 {
-    telemetryDataFile = SD.open("TELEMETRYDATA.CSV", FILE_WRITE);
+    File telemetryDataFile = SD.open("TELEMETRYDATA.CSV", FILE_WRITE);
     if (telemetryDataFile) // Make sure the file opened properly
     {
         telemetryDataFile.println(String(timestamp) + "," + telemetry);
