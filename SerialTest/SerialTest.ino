@@ -1,7 +1,7 @@
 // Rocket Telemetry Global Vars
 String inputString = "";
 String inputData = "";
-char oldFlightStage = 'A';
+char oldFlightStage;
 char flightStage;
 float telemetryData[8];
 bool dataInputComplete = false;
@@ -13,8 +13,8 @@ void setup()
   // slow for the computer to handle.
   Serial.begin(57600);
 
-  // Reserve 256 bytes for the inputString:
-  inputString.reserve(256);
+  // Reserve 128 bytes for the inputString (roughly 128 characters):
+  inputString.reserve(128);
 }
 
 void loop()
@@ -26,6 +26,8 @@ void loop()
   SerialEvent occurs whenever a new data comes in the hardware serial RX. This
   routine is run between each time loop() runs, so using delay inside loop can
   delay response. Multiple bytes of data may be available.
+
+  Largely the method parses the serial data and makes it more readable for other functions
 */
 void serialEvent()
 {
@@ -62,12 +64,50 @@ void serialEvent()
   }
 }
 
+/**
+ * @brief Handles the telemetry data.
+ * 
+ * Takes the telemetry input and uses it to trigger certain events such
+ * as activating the pump, fluid sensor, and SD card.
+ */
 void handleTelemetryData()
 {
   if (dataInputComplete)
   {
     Serial.println(inputString);
+    for(int i = 0; i < 8; i++)
+    {
+      Serial.print(telemetryData[i]);
+      Serial.print(",");
+    }
+    Serial.println();
     inputString = "";
     dataInputComplete = false;
+
+    // Call helper functions such as write to SD card
+  }
+
+  if (oldFlightStage != flightStage)
+  {
+    Serial.print("NEW Flight Stage Detected: ");
+    Serial.println(flightStage);
+    oldFlightStage = flightStage;
+
+    switch (flightStage)
+    {
+      case 'F':
+        // Coast Starting, Activate Pump and Expulsion System
+        Serial.println("Coast Starting");
+        break;
+      case 'H':
+        // Coast Ending, Deactivate Pump
+        break;
+      case 'J':
+        // Main shoots deployed, Activate water sensor and start writing data
+        break;
+      case 'K':
+        // Touchdown, Write to file and continue to record water sensor data
+        break;
+    }
   }
 }

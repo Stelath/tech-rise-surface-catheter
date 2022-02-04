@@ -1,26 +1,8 @@
 #include <SPI.h>
 #include <SD.h>
 
+// SD Card Pins
 const byte SD_PIN = 10;
-
-void setup()
-{
-    // Open serial communications and wait for port to open:
-    Serial.begin(9600);
-    while (!Serial) {} // Wait for serial port to connect. Needed for native USB port only
-    Serial.println("Serial Initialized");
-
-    Serial.println("Initializing SD card...");
-    while (!setupSDCard()) {} // Initialize the SD card, keep trying until it succeeds
-    Serial.println("initialization done.");
-}
-
-void loop()
-{
-    writeSensorData(millis(), 10, 30);
-    writeTelemetryData("Telemetry Test Value");
-    delay(50);
-}
 
 /**
  * @brief A setup method for the SD card.

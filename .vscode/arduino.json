@@ -2,5 +2,5 @@
     "board": "arduino:avr:uno",
     "programmer": "arduino:avrispmkii",
     "port": "/dev/cu.usbmodem11301",
-    "sketch": "SDTest/CardDataTest.ino"
+    "sketch": "Final/SurfaceCatheter.ino"
 }
