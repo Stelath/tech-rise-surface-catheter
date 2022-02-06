@@ -29,7 +29,6 @@ void loop()
   
   Serial.print("NEW Flight Stage Detected: ");
   Serial.println(flightStage);
-  oldFlightStage = flightStage;
 
   switch (flightStage)
   {
@@ -54,9 +53,10 @@ void loop()
       activateFluidSensor = false;
   }
 
-  // writeSensorData(millis(), 10, 30);
-  
-  // delay(50);
+  if (activateFluidSensor) {
+    int fluidLevel = readFluidSensor();
+    writeSensorData(telemetryData[0], fluidLevel, fluidLevel * 10);
+  }
 }
 
 /*
@@ -111,7 +111,7 @@ void handleTelemetryData()
 {
   if (dataInputComplete)
   {
-    writeTelemetryData(telemetryData);
+    writeTelemetryData(inputString);
 
     inputString = "";
     dataInputComplete = false;

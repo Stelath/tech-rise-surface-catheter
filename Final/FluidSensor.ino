@@ -15,7 +15,7 @@ void setupFluidSensor() {
 
 void loop() {
 	//get the reading from the function below and print it
-	int level = readSensor();
+	int level = readFluidSensor();
 	
 	Serial.print("Water level: ");
 	Serial.println(level);
@@ -31,7 +31,7 @@ void loop() {
  * 
  * @return int Returns the level of the water in the reservoir.
  */
-int readSensor() {
+int readFluidSensor() {
 	digitalWrite(FS_POWER_PIN, HIGH);			// Turn the sensor ON
 	delay(10);										// wait 10 milliseconds
 	int waterLevel = analogRead(FS_READ_PIN);	// Read the analog value form sensor
