@@ -1,6 +1,7 @@
 {
-    "board": "arduino:avr:uno",
+    "board": "arduino:avr:nano",
     "programmer": "arduino:avrispmkii",
     "port": "/dev/cu.usbmodem11301",
-    "sketch": "Final/SurfaceCatheter.ino"
+    "sketch": "SerialTest/SerialTest.ino",
+    "configuration": "cpu=atmega328"
 }

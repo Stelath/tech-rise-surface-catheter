@@ -1,8 +1,8 @@
-// Pin Definitions:
+// Pin variables
 const byte PUMP_PIN = 9;
 
-void setup() {
-    //initialize motor pin as an output
+void setupPump() {
+    // Initialize pump pin as an output
     pinMode(PUMP_PIN, OUTPUT);
 }
 

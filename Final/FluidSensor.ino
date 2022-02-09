@@ -13,16 +13,6 @@ void setupFluidSensor() {
 	digitalWrite(FS_POWER_PIN, LOW);
 }
 
-void loop() {
-	//get the reading from the function below and print it
-	int level = readFluidSensor();
-	
-	Serial.print("Water level: ");
-	Serial.println(level);
-	
-	delay(1000);
-}
-
 /**
  * @brief Returns the reading of the Water Level Sensor.
  * 
