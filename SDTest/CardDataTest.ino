@@ -1,7 +1,7 @@
 #include <SPI.h>
 #include <SD.h>
 
-const byte SD_PIN = 10;
+const byte SD_PIN = 4;
 
 void setup()
 {

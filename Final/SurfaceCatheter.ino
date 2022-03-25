@@ -1,21 +1,5 @@
 #include <TRSim_Blue.h>
 
-// Variables for tracking events
-char currEvent = '\0';
-char prevEvent = '\0';
-// Variable for tracking number of full telemetry packets received
-int numPackets = 0;
-
-char* data;
-
-char outputString[120];
-
-void serialPrintPacket();
-
-// Activation Vars
-bool activateFluidSensor = false;
-int lastUpdateTime = 0;
-
 // Set up events
 typedef struct _eventDetails {
   char value;
@@ -42,19 +26,29 @@ EventDetails events[] = {
 // Set up Simulator
 TRSim_Blue::Simulator TRsim;
 
+// Variables for tracking events
+char currEvent = '\0';
+char prevEvent = '\0';
+// Variable for tracking number of full telemetry packets received
+int numPackets = 0;
+
+char* data;
+
+char outputString[120];
+
+bool activateFluidSensor = false;
+
 void setup()
 {
-  Serial.begin(115200);
-  TRsim.init(); 
-
-  Serial.println("Running Blue Launch demo");
-
+  TRsim.init();
+  
   // Initialize the SD card, keep trying until it succeeds
   while (!setupSDCard()) {}
+  debugLog("SD Card Initialized");
 }
 
 void loop()
-{ 
+{
   // Update the simulator to catch serial input
   TRsim.update();
 
@@ -69,111 +63,72 @@ void loop()
 
       // If a new event has fired, identify it and print it out
       currEvent = TRsim.getEvents();
-      handleEvent();
-      
-      // Print every 1000th packet to verify data
-      if ((numPackets % 1000) == 1) {
-        serialPrintPacket();
-        
+      if (currEvent != prevEvent) {
+        // Find event in event structure
+        for (int i=0; i<TRSim_Blue::NUMBER_EVENTS; i++) {
+          if (currEvent == events[i].value) {
+            debugLog("NEW EVENT: " + String(events[i].description));
+            break;
+          } 
+        }
+
+        handleNewEvent(currEvent);
+
+        prevEvent = currEvent;
       }
+      
+      // Print every 100th packet to verify data
+      if ((numPackets % 100) == 1) {
+        debugLog(data);
+      }
+      writeTelemetryData(data);
     }
   }
 
-  delay(10);
-
-  // switch (flightStage)
-  // {
-  //   case 'F':
-  //     // Coast Starting, Activate Pump and Expulsion System
-  //     turnOnPump();
-  //     Serial.println("Coast Starting");
-  //     break;
-  //   case 'H':
-  //     // Coast Ending, Deactivate Pump
-  //     turnOffPump();
-  //     break;
-  //   case 'J':
-  //     // Main shoots deployed, Activate water sensor and start writing data
-  //     activateFluidSensor = true;
-  //     break;
-  //   case 'K':
-  //     // Touchdown, Write to file and continue to record water sensor data
-  //     break;
-  //   case 'M':
-  //     // Mission ended, deactivate all systems and perform safe shutdown
-  //     activateFluidSensor = false;
-  // }
-
-  // if (activateFluidSensor) {
-  //   int fluidLevel = readFluidSensor();
-  //   writeSensorData(telemetryData[0], fluidLevel, fluidLevel * 10);
-  // }
+  if (activateFluidSensor) {
+    int fluidLevel = readFluidSensor();
+    writeSensorData(TRsim.getTime(), fluidLevel, fluidLevel * 10);
+  }
+  else {
+    // The fluid sensor will cause enough delay if activated
+    delay(10);
+  }
 }
 
 /**
- * @brief Handles the event data.
+ * @brief Handles new events from the rockets telemetry.
  * 
- * Takes the telemetry input and uses it to trigger certain events such
- * as activating the pump, fluid sensor, and SD card.
+ * Takes an event input and uses it to trigger certain stages such
+ * as activating the pump or fluid sensor while in flight.
  */
-void handleEvent()
+void handleNewEvent(char event)
 {
-  if (currEvent != prevEvent) {
-    // Find event in event structure
-    for (int i=0; i<TRSim_Blue::NUMBER_EVENTS; i++) {
-      if (currEvent == events[i].value) {
-        Serial.print("Event: ");
-        Serial.println(events[i].description);
-        break;
-      } 
-    }
-    prevEvent = currEvent;
+  switch (event) {
+    case 'B':
+      // Escape Command, about to takeoff, activate camera
+      break;
+    case 'C':
+      // Liftoff, record for a bit and then turn off camera so it can cool down
+      break;
+    case 'D':
+      // Start recording experiment
+    case 'F':
+      // Coast Starting, Activate Pump and Expulsion System
+      turnOnPump();
+      break;
+    case 'H':
+      // Coast Ending, Deactivate Pump
+      turnOffPump();
+      break;
+    case 'J':
+      // Main shoots deployed, Activate water sensor and start writing data
+      activateFluidSensor = true;
+      break;
+    case 'K':
+      // Touchdown, Write to file and continue to record water sensor data
+      break;
+    case 'M':
+      // Mission ended, deactivate all systems and perform safe shutdown
+      activateFluidSensor = false;
   }
-}
-
-void serialPrintPacket() {
-  Serial.println(data);
-
-  Serial.print("  events ");
-  Serial.println(TRsim.getEvents());
-  Serial.print("  time ");
-  Serial.println(TRsim.getTime());
-  Serial.print("  altitude ");
-  Serial.println(TRsim.getAltitude());
-  Serial.print("  gps altitude ");
-  Serial.println(TRsim.getGpsAltitude());
-  Serial.print("  velocity up ");
-  Serial.println(TRsim.getVelocityUp());
-  Serial.print("  velocity east ");
-  Serial.println(TRsim.getVelocityEast());
-  Serial.print("  velocity north ");
-  Serial.println(TRsim.getVelocityNorth());
-  Serial.print("  acceleration magnitude "); 
-  Serial.println(TRsim.getAccelerationMagnitude());
-  Serial.print("  acceleration x ");
-  Serial.println(TRsim.getAccelerationX());
-  Serial.print("  acceleration y ");
-  Serial.println(TRsim.getAccelerationY());
-  Serial.print("  acceleration z ");
-  Serial.println(TRsim.getAccelerationZ());
-  Serial.print("  attitude phi ");
-  Serial.println(TRsim.getAttitudePhi());
-  Serial.print("  attitude theta ");
-  Serial.println(TRsim.getAttitudeTheta());
-  Serial.print("  attitude psi ");
-  Serial.println(TRsim.getAttitudePsi());
-  Serial.print("  angular velocity x ");
-  Serial.println(TRsim.getAngularVelocityX());
-  Serial.print("  angular velocity y ");
-  Serial.println(TRsim.getAngularVelocityY());
-  Serial.print("  angular velocity z ");
-  Serial.println(TRsim.getAngularVelocityZ());
-  Serial.print("  liftoff warning ");
-  Serial.println(TRsim.getLiftoffWarning()?"true":"false");
-  Serial.print("  drogue chute warning ");
-  Serial.println(TRsim.getDrogueChuteWarning()?"true":"false");
-  Serial.print("  landing warning ");
-  Serial.println(TRsim.getLandingWarning()?"true":"false");
-  Serial.print("  chute fault warning ");
-  Serial.println(TRsim.getChuteFaultWarning()?"true":"false");
 }

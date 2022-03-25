@@ -2,7 +2,7 @@
 #include <SD.h>
 
 // SD Card Pins
-const byte SD_PIN = 10;
+const byte SD_PIN = 4;
 
 /**
  * @brief A setup method for the SD card.
@@ -18,7 +18,6 @@ bool setupSDCard()
     }
     else
     {
-        Serial.println("Failed to initialize");
         return false;
     }
 }
@@ -62,4 +61,14 @@ void writeTelemetryData(String telemetry)
         telemetryDataFile.println(telemetry);
     }
     telemetryDataFile.close();
+}
+
+void debugLog(String message)
+{
+    File debugLogFile = SD.open("debug.log", FILE_WRITE);
+    if (debugLogFile) // Make sure the file opened properly
+    {
+        debugLogFile.println(message);
+    }
+    debugLogFile.close();
 }

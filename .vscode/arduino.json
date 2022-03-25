@@ -1,7 +1,7 @@
 {
-    "board": "arduino:avr:nano",
+    "board": "adafruit:samd:adafruit_feather_m0",
     "programmer": "arduino:avrispmkii",
-    "port": "/dev/cu.usbmodem11301",
-    "sketch": "SerialTest/SerialTest.ino",
-    "configuration": "cpu=atmega328"
+    "port": "/dev/tty.usbmodem101",
+    "sketch": "CameraTest/CameraSDTest/CameraSDTest.ino",
+    "configuration": "opt=small,usbstack=arduino,debug=off"
 }

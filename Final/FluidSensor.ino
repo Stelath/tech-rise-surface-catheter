@@ -1,6 +1,6 @@
 // Pin Definitions:
-const int FS_POWER_PIN = 7;
-const int FS_READ_PIN = A0;
+const int FS_POWER_PIN = 5;
+const int FS_READ_PIN = A5;
 
 /**
  * @brief Initializes the fluid sensor.
