@@ -1,6 +1,6 @@
 // Sensor pins
-const int fluidSensorPower = 7;
-const int fluidSensorPin = A0;
+const int fluidSensorPower = 5;
+const int fluidSensorPin = A5;
 
 void setup() {
 	// Set D7 as an OUTPUT
@@ -9,7 +9,7 @@ void setup() {
 	// Set to LOW so no power flows through the sensor
 	digitalWrite(fluidSensorPower, LOW);
 	
-	Serial.begin(9600);
+	Serial.begin(115200);
 }
 
 void loop() {

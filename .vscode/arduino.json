@@ -1,7 +1,7 @@
 {
     "board": "adafruit:samd:adafruit_feather_m0",
     "programmer": "arduino:avrispmkii",
-    "port": "/dev/tty.usbmodem101",
-    "sketch": "CameraTest/CameraSDTest/CameraSDTest.ino",
+    "port": "/dev/tty.usbmodem11301",
+    "sketch": "FluidSensorTest/FluidSensorTest.ino",
     "configuration": "opt=small,usbstack=arduino,debug=off"
 }

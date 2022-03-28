@@ -30,7 +30,7 @@
 #if !(defined(OV2640_MINI_2MP_PLUS))
 #error Please select the hardware platform and camera module in the ../libraries/ArduCAM/memorysaver.h file
 #endif
-#define FRAMES_NUM 0x09
+#define FRAMES_NUM 0xFF
 // set pin 7 as the slave select for the digital pot:
 const int CS = 9;
 #define SD_CS 4
