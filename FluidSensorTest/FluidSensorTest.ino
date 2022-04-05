@@ -1,6 +1,6 @@
 // Sensor pins
 const int fluidSensorPower = 5;
-const int fluidSensorPin = A5;
+const int fluidSensorPin = A1;
 
 void setup() {
 	// Set D7 as an OUTPUT
