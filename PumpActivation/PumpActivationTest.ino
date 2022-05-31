@@ -1,4 +1,4 @@
-const int pumpPin = 11; //the number of the motorPin could be changed 
+const int pumpPin = 10; //the number of the motorPin could be changed 
 
 void setup() {
     Serial.begin(9600);
@@ -10,11 +10,11 @@ void loop() {
     //turn on pump
     Serial.println("Pump Activated");
     turnOnPump();
-    delay(3000);
+    delay(1500);
     //turn off pump
     Serial.println("Pump Deactivated");
     turnOffPump();
-    delay(3000);
+    delay(1500);
 }
 
 void turnOnPump() {

@@ -35,14 +35,19 @@ bool setupSDCard()
  */
 void writeEvent(long timestamp, String event)
 {
-    File sensorDataFile = SD.open("edata.csv", FILE_WRITE);
+    File eventDataFile = SD.open("edata.csv", FILE_WRITE);
+    if (eventDataFile) // Make sure the file opened properly
+    {
+        eventDataFile.println(String(timestamp) + "," + event);
+    }
+    eventDataFile.close();
+
+    File sensorDataFile = SD.open("sdata.csv", FILE_WRITE);
     if (sensorDataFile) // Make sure the file opened properly
     {
         sensorDataFile.println(String(timestamp) + "," + event);
     }
     sensorDataFile.close();
-
-    debugLog(event);
 }
 
 /**
@@ -56,12 +61,12 @@ void writeEvent(long timestamp, String event)
  * @param volume The volume of fluid in the reservoir calculated
  *               with the fluid level (in milliliters).
  */
-void writeSensorData(long timestamp, int fluidLevel, int volume)
+void writeSensorData(long timestamp, int fluidLevel)
 {
     File sensorDataFile = SD.open("sdata.csv", FILE_WRITE);
     if (sensorDataFile) // Make sure the file opened properly
     {
-        sensorDataFile.println(String(timestamp) + "," + String(fluidLevel) + "," + String(volume));
+        sensorDataFile.println(String(timestamp) + "," + String(fluidLevel));
     }
     sensorDataFile.close();
 }
@@ -84,14 +89,4 @@ void writeTelemetryData(String telemetry)
         telemetryDataFile.println(telemetry);
     }
     telemetryDataFile.close();
-}
-
-void debugLog(String message)
-{
-    File debugLogFile = SD.open("debug.log", FILE_WRITE);
-    if (debugLogFile) // Make sure the file opened properly
-    {
-        debugLogFile.println("[" + String(millis()) + "] " + message);
-    }
-    debugLogFile.close();
 }

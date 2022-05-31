@@ -43,11 +43,12 @@ void setup()
 {
   TRsim.init();
   setupComponents();
+  setupCamera();
   // Initialize the SD card, keep trying until it succeeds
   while (!setupSDCard())
   {
   }
-  debugLog(F("SD Card Initialized"));
+  writeEvent(0, "SD Card Initialized");
 }
 
 void loop()
@@ -90,7 +91,7 @@ void loop()
   if (activateFluidSensor)
   {
     int fluidLevel = readFluidSensor();
-    writeSensorData(TRsim.getTime(), fluidLevel, fluidLevel * 10);
+    writeSensorData(TRsim.getTime(), fluidLevel);
   }
   else
   {
@@ -110,31 +111,38 @@ void handleNewEvent(char event)
   if (event == TRSim_Blue::EVENT_ESCAPE_CMD)
   {
     // Escape Command, about to takeoff, activate camera
+    writeEvent(TRsim.getTime(), F("Camera Activating"));
+    turnOnCameraLight();
+    turnOnCamera();
+    writeEvent(TRsim.getTime(), F("Camera Activated"));
+    activateFluidSensor = true;
+    writeEvent(TRsim.getTime(), F("Activated Fluid Sensor"));
   }
   else if (event == TRSim_Blue::EVENT_LIFTOFF)
   {
-    // Liftoff, record for a bit and then turn off camera so it can cool down
-    writeEvent(TRsim.getTime(), F("Camera Activating"));
-    turnOnCameraLight();
-    writeEvent(TRsim.getTime(), F("Camera Activated"));
+    // Liftoff
+    activateFluidSensor = false; // Getting baseline data for fluid sensor
+    writeEvent(TRsim.getTime(), F("Deactivated Fluid Sensor"));
   }
-  else if (event == TRSim_Blue::EVENT_MECO)
-  {
-    // Start recording experiment
-  }
+  // else if (event == TRSim_Blue::EVENT_MECO)
+  // {
+  //   // Start recording experiment
+  // }
   else if (event == TRSim_Blue::EVENT_COAST_START)
   {
     // Coast Starting, Activate Pump and Expulsion System
     writeEvent(TRsim.getTime(), F("Pump and Expulsion System Activating"));
     turnOnPump();
-    activateExpulsionSystem();
+    turnOnExpulsion();
     writeEvent(TRsim.getTime(), F("Pump and Expulsion System Activated"));
   }
   else if (event == TRSim_Blue::EVENT_COAST_END)
   {
     // Coast Ending, Deactivate Pump
-    writeEvent(TRsim.getTime(), F("Pump System Deactivating"));
+    writeEvent(TRsim.getTime(), F("Pump and Expulsion System Deactivating"));
     turnOffPump();
+    turnOffExpulsion();
+    writeEvent(TRsim.getTime(), F("Pump and Expulsion System Deactivated"));
   }
   else if (event == TRSim_Blue::EVENT_MAIN)
   {
@@ -144,13 +152,16 @@ void handleNewEvent(char event)
   }
   else if (event == TRSim_Blue::EVENT_TOUCHDOWN)
   {
-    // Touchdown, Write to file and continue to record water sensor data
-  }
-  else if (event == TRSim_Blue::EVENT_SAFING)
-  {
-    // Mission ended, deactivate all systems and perform safe shutdown
-    writeEvent(TRsim.getTime(), F("Deactivated Fluid Sensor"));
+    // Touchdown, deactivate all systems and perform safe shutdown
     activateFluidSensor = false;
+    writeEvent(TRsim.getTime(), F("Deactivated Fluid Sensor"));
+    turnOffCameraLight();
+    turnOffCamera();
+    writeEvent(TRsim.getTime(), F("Deactivated Camera"));
     writeEvent(TRsim.getTime(), F("Shutting Down"));
   }
+  // else if (event == TRSim_Blue::EVENT_SAFING)
+  // {
+  //   // Mission ended
+  // }
 }

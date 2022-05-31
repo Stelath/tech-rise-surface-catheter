@@ -26,8 +26,10 @@ void turnOffCameraLight() {
     digitalWrite(CAMERA_LIGHT_PIN, LOW);
 }
 
-void activateExpulsionSystem() {
+void turnOnExpulsion() {
     digitalWrite(EXPULSION_PIN, HIGH);
-    delay(1000);
+}
+
+void turnOffExpulsion() {
     digitalWrite(EXPULSION_PIN, LOW);
 }
