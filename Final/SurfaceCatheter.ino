@@ -41,6 +41,7 @@ bool activateFluidSensor = false;
 
 void setup()
 {
+  delay(15000);
   TRsim.init();
   setupComponents();
   setupCamera();
@@ -108,9 +109,9 @@ void loop()
  */
 void handleNewEvent(char event)
 {
-  if (event == TRSim_Blue::EVENT_ESCAPE_CMD)
+  if (event == TRSim_Blue::EVENT_LIFTOFF)
   {
-    // Escape Command, about to takeoff, activate camera
+    // Liftoff
     writeEvent(TRsim.getTime(), F("Camera Activating"));
     turnOnCameraLight();
     turnOnCamera();
@@ -118,16 +119,12 @@ void handleNewEvent(char event)
     activateFluidSensor = true;
     writeEvent(TRsim.getTime(), F("Activated Fluid Sensor"));
   }
-  else if (event == TRSim_Blue::EVENT_LIFTOFF)
+  else if (event == TRSim_Blue::EVENT_MECO)
   {
-    // Liftoff
+    // Start recording experiment
     activateFluidSensor = false; // Getting baseline data for fluid sensor
     writeEvent(TRsim.getTime(), F("Deactivated Fluid Sensor"));
   }
-  // else if (event == TRSim_Blue::EVENT_MECO)
-  // {
-  //   // Start recording experiment
-  // }
   else if (event == TRSim_Blue::EVENT_COAST_START)
   {
     // Coast Starting, Activate Pump and Expulsion System

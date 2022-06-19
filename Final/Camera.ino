@@ -2,6 +2,9 @@ const int cameraPin = 9;
 
 void setupCamera() {
     pinMode(cameraPin, OUTPUT);
+    turnOnCamera();
+    delay(1000);
+    turnOffCamera();
 }
 
 void turnOnCamera() {
