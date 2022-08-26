@@ -1,7 +1,0 @@
-{
-    "board": "adafruit:samd:adafruit_feather_m0",
-    "programmer": "adafruit:adafruit_jlink",
-    "port": "/dev/tty.usbmodem1101",
-    "sketch": "Final/FluidSensor.ino",
-    "configuration": "opt=small,usbstack=arduino,debug=off"
-}
