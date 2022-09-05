@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://user-images.githubusercontent.com/25530613/188341537-2b4ae422-f9b2-4934-b72a-58c2bec74df1.jpg"><br>
+<img src="https://user-images.githubusercontent.com/25530613/188341537-2b4ae422-f9b2-4934-b72a-58c2bec74df1.jpg"><br>
 </h1>
 
 ![License](https://img.shields.io/github/license/Stelath/tech-rise-surface-catheter) ![Release](https://img.shields.io/github/v/release/Stelath/tech-rise-surface-catheter)
@@ -27,17 +27,17 @@ Starting the project we had a very tight time constraint of four months before t
 ## Final Payload
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/25530613/188340907-2cde86b8-f0a4-4b70-971e-a63ecb49e3eb.png" width="300"><br>
-    Above is a rendering of the final experiment payload that will be launched on the Blue Origin rocket in early 2023!
+<img src="https://user-images.githubusercontent.com/25530613/188340907-2cde86b8-f0a4-4b70-971e-a63ecb49e3eb.png" width="300"><br>
+Above is a rendering of the final experiment payload that will be launched on the Blue Origin rocket in early 2023!
 </p><br>
 
 ## Custom Circuit Board
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/25530613/188515153-9a29d682-5baa-411f-9af7-4e023ea187a3.png" width="300">
-    <img src="https://user-images.githubusercontent.com/25530613/188515151-6f31f0df-4e43-4b7e-a59d-799457842d4a.png" width="300">
-    <img src="https://user-images.githubusercontent.com/25530613/188515154-00fd0744-1202-497c-b9ad-040c1a78f300.png" width="300"><br>
-    Above are some photos of the custom circuit board designed by me to control the experiment and collect data during the mission.
+<img src="https://user-images.githubusercontent.com/25530613/188515153-9a29d682-5baa-411f-9af7-4e023ea187a3.png" width="300">
+<img src="https://user-images.githubusercontent.com/25530613/188515151-6f31f0df-4e43-4b7e-a59d-799457842d4a.png" width="300">
+<img src="https://user-images.githubusercontent.com/25530613/188515154-00fd0744-1202-497c-b9ad-040c1a78f300.png" width="300"><br>
+Above are some photos of the custom circuit board designed by me to control the experiment and collect data during the mission.
 </p><br>
 
 ### Rocket Info Link
