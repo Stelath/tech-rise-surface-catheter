@@ -6,7 +6,7 @@
 
 # Tech Rise Surface Catheter
 
-### Project Leads: Alex Korte & Ryan Teachman
+### Project Leads: Alex Korte, Jackson Gresh, and Ryan Teachman
 
 ### What is this?
 
