@@ -40,6 +40,14 @@ Above is a rendering of the final experiment payload that will be launched on th
 Above are some photos of the custom circuit board designed by Alex Korte to control the experiment and collect data during the mission.
 </p><br>
 
+## Expulsion System
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/25530613/189803539-2400e061-316a-4c6a-8ac0-e3cd1edbfeb9.png" width="300">
+<img src="https://user-images.githubusercontent.com/25530613/189803526-d1a50100-b72a-401a-85d8-535f30cdcdf7.png" width="300"><br>
+Above is a rendering of the Expulsion System that simulates realistic bloodloss in space. The system uses magnets to put constant pressure on a fluid released during the experiment through an electrically triggered solenoid valve.
+</p><br>
+
 ### Rocket Info Link
 
 <https://festorage.blob.core.windows.net/nasatechrise/files/nasatechrise-intropdf-6699bc05.pdf>
