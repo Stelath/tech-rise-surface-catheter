@@ -45,21 +45,9 @@ Above are some photos of the custom circuit board designed by Alex Korte to cont
 <https://festorage.blob.core.windows.net/nasatechrise/files/nasatechrise-intropdf-6699bc05.pdf>
 
 ## About the Project Leaders
-
-### Ryan Teachman                                                           Alex Korte
-Duke 2026                                                                   Clemson 2026
-Ryan Teachman is currently a student at                                     Ale
-Duke university studying Electrical and 
-Computer Engineering as well as CS. While 
-attending Wando High, he participated in
-NASA's NASA WEAR design competition (2019-
-2020) and ran XC and Track. Through his 
-2021) collaboration with Dr. Donna Roberts, 
-Ryan found the TechRise competition and 
-assembled a team through his high school.
-Working as a Team Lead and Lead Designer,
-Ryan was in charge of Product Management.
-He is responsible for most of the systems
-design as well as most of the part modeling.
-He is currently interested in Robotic,
-Business, and entrepreneurship.
+### Alex Korte
+Clemson 2026
+Alex Korte is currently a student at Clemson University studying Computer Science and (INSERT OTHER MAJOR IF ONE EXISTS). While attending Wando High, he led the school's coding team and ran XC and Track. Although joining the team as a regular member, Alex's knowledge of programming and circuitry quickly put him in the spot light. Soon becoming a Team Lead, Alex was in charge of producing all the code behind the project as well fabricating and implementing an integrated circuit with a microcontroller. 
+### Ryan Teachman                                                           
+Duke 2026                                                                   
+Ryan Teachman is currently a student at Duke university studying Electrical and Computer Engineering as well as Computer Science. While attending Wando High, he participated in NASA's NASA WEAR design competition (2019-2020) and ran XC and Track. Through his collaboration with Dr. Donna Roberts, Ryan found the TechRise competition and assembled a team through his high school. Working as a Team Lead and Lead Designer, Ryan was in charge of Product Management. He is responsible for most of the systems design as well as most of the part modeling. He is currently interested in robotic, business, and entrepreneurship.
