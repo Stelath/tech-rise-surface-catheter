@@ -45,3 +45,5 @@ Above are some photos of the custom circuit board designed by Alex Korte to cont
 <https://festorage.blob.core.windows.net/nasatechrise/files/nasatechrise-intropdf-6699bc05.pdf>
 
 ## About the Project Leaders
+
+### Ryan Teachman
