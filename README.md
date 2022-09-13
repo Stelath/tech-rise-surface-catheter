@@ -46,4 +46,20 @@ Above are some photos of the custom circuit board designed by Alex Korte to cont
 
 ## About the Project Leaders
 
-### Ryan Teachman                 ### Alex Korte
+### Ryan Teachman                                                           Alex Korte
+Duke 2026                                                                   Clemson 2026
+Ryan Teachman is currently a student at                                     Ale
+Duke university studying Electrical and 
+Computer Engineering as well as CS. While 
+attending Wando High, he participated in
+NASA's NASA WEAR design competition (2019-
+2020) and ran XC and Track. Through his 
+2021) collaboration with Dr. Donna Roberts, 
+Ryan found the TechRise competition and 
+assembled a team through his high school.
+Working as a Team Lead and Lead Designer,
+Ryan was in charge of Product Management.
+He is responsible for most of the systems
+design as well as most of the part modeling.
+He is currently interested in Robotic,
+Business, and entrepreneurship.
